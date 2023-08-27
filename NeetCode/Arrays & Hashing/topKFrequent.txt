@@ -1,0 +1,30 @@
+This is the explaination for this leetcode problem.
+The approach to this problem is similar to bucketsort.
+We make a hashmap and an array. 
+The hashmap is used to store the key as the distinct number and the value as the count of how many times it appears.
+The array of arrays is used to chart the indexes to the frequency that the number appears.
+So, if 1 and 2 both appear 6 times the sixth index of freq would be [1,2]
+
+Next to return the result we start at the end of the list and go through the list of lists that appear the most times
+an we keep going until the length of the result list is equal to the amount of k values we need to display
+
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        count = {}
+        freq = [[] for i in range(len(nums)+1)]
+        for n in nums:
+            count[n] = 1 + count.get(n,0)
+        for n,c in count.items():
+            freq[c].append(n)
+        
+        res = []
+        for n in range(len(freq)-1,0,-1):
+            for j in freq[n]:
+                res.append(j)
+                if len(res) == k:
+                    return res

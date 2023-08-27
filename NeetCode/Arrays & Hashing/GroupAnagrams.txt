@@ -1,0 +1,27 @@
+The LeetCode question "Group Anagrams"
+This question focuses on hashmaps 
+Specifically working with a hashmap that the key is the specific
+number of a-z's and the value is the string
+each time a string with the same number of a-z's (as specified in parameters of problem ONLY a-z)
+in the "count" format it adds that string
+**does not work with duplicates**
+you could go through values in the array
+if (s not in res[tuple(count)].values):
+	then res[tuple(count)].append(s)
+jack up the time more to + 
+
+
+        res = defaultdict(list) #creates a default hashmap of keys to lists. The keys need to be immutible so change at end. 
+
+        for s in strs: #takes each string in the list of strings
+
+            count = [0] * 26 #makes a list of count for the amount of each characters in a specific string a-z
+
+            for c in s: # for each character in the string
+
+                count[ord(c) - cor("a")] += 1 # at position 0 to 25 in the array for a-z whataver the character in unicode subtract a so "a" - "a: would be position 0 in count becoming the letter a for 
+						# a specific string of characters. 
+            
+            res[tuple(count)].append(s) # Makes the count of the specific word to the key and the value is that string in the form of a list
+
+        return res.values() # returns that list
